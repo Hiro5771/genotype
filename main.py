@@ -48,6 +48,7 @@ def create_button_click():
 root = ctk.CTk()
 root.geometry("450x600")
 root.title("Setting Genotype")
+root.resizable(False, False)
 
 scrollable_frame = ctk.CTkScrollableFrame(root, width=280, height=400)
 scrollable_frame.pack(pady=10, padx=10, fill="both", expand=True)
