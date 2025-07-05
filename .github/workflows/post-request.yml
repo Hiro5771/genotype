@@ -1,0 +1,14 @@
+name: Trigger POST Request
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  send_post_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send POST Request
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"message":"Master branch updated!"}' http://192.168.11.2/job/build_test/build?token=mysecrettoken
