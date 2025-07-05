@@ -12,7 +12,7 @@ jobs:
       - name: Send POST Request and Check Status
         run: |
           response=$(curl -o /dev/null -s -w "%{http_code}" -X POST http://192.168.11.2/job/build_test/build?token=mysecrettoken)
-          if [ "$response" -eq 200 ]; then
+          if [ "$response" -eq 201 ]; then
             echo "Request successful! HTTP status: $response"
           else
             echo "Request failed with HTTP status: $response"
