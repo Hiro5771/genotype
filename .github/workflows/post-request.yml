@@ -1,4 +1,4 @@
-name: Trigger POST Request
+name: Check HTTP Response Status
 
 on:
   push:
@@ -6,9 +6,15 @@ on:
       - master
 
 jobs:
-  send_post_request:
+  check_post_request:
     runs-on: ubuntu-latest
     steps:
-      - name: Send POST Request
+      - name: Send POST Request and Check Status
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"message":"Master branch updated!"}' http://192.168.11.2/job/build_test/build?token=mysecrettoken
+          response=$(curl -o /dev/null -s -w "%{http_code}" -X POST http://192.168.11.2/job/build_test/build?token=mysecrettoken)
+          if [ "$response" -eq 200 ]; then
+            echo "Request successful! HTTP status: $response"
+          else
+            echo "Request failed with HTTP status: $response"
+            exit 1
+          fi
