@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send POST Request and Check Status
+        shell: bash
         run: |
+          # POSTリクエストを送信し、HTTPステータスコードを取得
           response=$(curl --max-time 30 -o /dev/null -s -w "%{http_code}" -X POST http://192.168.11.2/job/build_test/build?token=mysecrettoken)
+          # ステータスコードを出力
           echo "HTTP status: $response"
-        shell: /usr/bin/bash -e
