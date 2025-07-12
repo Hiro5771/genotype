@@ -3,25 +3,25 @@
 pipeline {
     agent any
     stages {
-        stage('Pythonのインストール') {
+        stage('install Python') {
             steps {
                 // ChocolateyでPythonをインストール（既にインストール済みならスキップ）
                 bat 'choco install python -y'
             }
         }
-        stage('pipのアップグレード') {
+        stage('upgrade pip') {
             steps {
                 // pipを最新版にアップグレード
                 bat 'python -m pip install --upgrade pip'
             }
         }
-        stage('uvのインストール') {
+        stage('install uv') {
             steps {
                 // uvをインストール
                 bat 'pip install uv'
             }
         }
-        stage('バージョン確認') {
+        stage('check versions') {
             steps {
                 // Python、pip、uvのバージョンを表示
                 bat 'python --version'
