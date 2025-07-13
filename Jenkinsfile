@@ -29,5 +29,12 @@ pipeline {
                 bat 'uv --version'
             }
         }
+        stage('run uv pyinstaller') {
+            steps {
+                // create main.exe using uv
+                bat 'uv run pyinstaller --onefile --noconsole main.py'
+                echo 'successfully created main.exe'
+            }
+        }
     }
 }
